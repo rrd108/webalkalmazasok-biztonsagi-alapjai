@@ -8,11 +8,21 @@ $stmt = $pdo->query('SELECT * FROM products, categories
     ORDER BY rand()');
 
 if (isset($_GET['category'])) {
+    // Nem biztonságos mód
     $query = 'SELECT * FROM products, categories 
     WHERE categories.id = products.category_id 
     AND categories.category = "' . $_GET['category'] . '"
     ORDER BY rand()';
     $stmt = $pdo->query($query);
+
+    // Biztonságos mód
+    /*
+    $stmt = $pdo->prepare('SELECT * FROM products, categories 
+    WHERE categories.id = products.category_id 
+    AND categories.category = ?
+    ORDER BY rand()');
+    $stmt->execute([$_GET['category']]);
+    */
 }
 
 if (isset($_GET['order'])) {
