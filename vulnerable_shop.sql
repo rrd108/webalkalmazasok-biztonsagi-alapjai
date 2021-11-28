@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2021. Nov 14. 15:31
--- Kiszolgáló verziója: 10.6.4-MariaDB
--- PHP verzió: 8.0.11
+-- Létrehozás ideje: 2021. Nov 28. 14:46
+-- Kiszolgáló verziója: 10.6.5-MariaDB
+-- PHP verzió: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -81,9 +81,9 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `picture`, `
 --
 
 CREATE TABLE `users` (
-  `id` smallint(5) UNSIGNED NOT NULL,
+  `id` varchar(13) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `pass` varchar(36) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `pass` varchar(64) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `role` varchar(12) COLLATE utf8mb4_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
@@ -92,8 +92,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `pass`, `role`) VALUES
-(1, 'rrd@webmania.cc', 'HűDeTitkos!', 'admin'),
-(4, 'senki@sehol.se', 'Gauranga', 'user');
+('61a393e7180d3', 'rrd@webmania.cc', 'eaf12deddfcd20e9da7e8ed1d5cb348d', 'admin'),
+('61a3946a2ea39', 'senki@sehol.se', '2e3a96c4814ca799c61bf1e76c8616b3', 'user'),
+('61a3947d9d1f0', 'akarki@akarhol.hu', '5f4dcc3b5aa765d61d8327deb882cf99', 'user');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -133,12 +134,6 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `products`
   MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT a táblához `users`
---
-ALTER TABLE `users`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Megkötések a kiírt táblákhoz
