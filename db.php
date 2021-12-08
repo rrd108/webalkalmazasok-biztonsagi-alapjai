@@ -3,36 +3,28 @@
 $pdo = new PDO('mysql:host=' . $secrets['db']['host'] . ';dbname=' . $secrets['db']['name'], $secrets['db']['user'], $secrets['db']['pass']);
 
 
-$stmt = $pdo->query('SELECT * FROM products, categories 
+$stmt = $pdo->query('SELECT products.id AS productId, products.name, products.description, products.picture, products.price, products.stock, categories.id AS categoryId, categories.category 
+    FROM  products, categories
     WHERE categories.id = products.category_id 
-    ORDER BY rand()');
+    ORDER BY RAND()');
 
 if (isset($_GET['category'])) {
-    // Nem biztonságos mód
-    /*$query = 'SELECT * FROM products, categories 
-    WHERE categories.id = products.category_id 
-    AND categories.category = "' . $_GET['category'] . '"
-    ORDER BY rand()';
-    $stmt = $pdo->query($query);*/
-
-    // Biztonságos mód
-    $stmt = $pdo->prepare('SELECT * FROM products, categories 
-    WHERE categories.id = products.category_id 
-    AND categories.category = ?
-    ORDER BY rand()');
+    $stmt = $pdo->prepare('SELECT products.id AS productId, products.name, products.description, products.picture, products.price, products.stock, categories.id AS categoryId, categories.category
+        FROM products, categories 
+        WHERE categories.id = products.category_id 
+        AND categories.category = ?
+        ORDER BY RAND()');
     $stmt->execute([$_GET['category']]);
 }
 
 if (isset($_GET['order'])) {
-    // Nem biztonságos mód
-    $stmt = $pdo->query('SELECT * FROM products, categories 
+    $order = $_GET['order'] == 'name' ? 'products.name' : 'products.price';
+    $stmt = $pdo->prepare('SELECT products.id AS productId, products.name, products.description, products.picture, products.price, products.stock, categories.id AS categoryId, categories.category
+        FROM products, categories 
         WHERE categories.id = products.category_id 
-        ORDER BY ' . $_GET['order']);
-    // Biztonságos mód
-    /*$stmt = $pdo->prepare('SELECT * FROM products, categories 
-    WHERE categories.id = products.category_id 
-    ORDER BY ?');
-    $stmt->execute([$_GET['order']]);*/
+        ORDER BY ' . $order . ' ASC');
+    $stmt->execute();
 }
 
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($products);

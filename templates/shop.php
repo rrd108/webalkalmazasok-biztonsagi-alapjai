@@ -1,4 +1,8 @@
 <main class="g3">
+    <?php if (isset($_GET['sendOrder'])) : ?>
+        <h2>Köszönjük a rendelést</h2>
+    <?php endif; ?>
+
     <?php foreach ($products as $product) : ?>
         <section class="product">
             <h2>
@@ -10,7 +14,7 @@
             <h3><?= $product['price'] ?> Ft</h3>
             <p>
                 <?php if ($product['stock']) : ?>
-                    <button id="<?= $product['id'] ?>" class="addToCart"><i class="fas fa-shopping-cart"></i> Kosárba</button>
+                    <button data-id="<?= $product['productId'] ?>" class="addToCart"><i class="fas fa-shopping-cart"></i> Kosárba</button>
                 <?php else : ?>
                     Nem rendelhető
                 <?php endif; ?>

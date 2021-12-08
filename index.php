@@ -15,6 +15,14 @@ require './templates/head.php';
 require './templates/header.php';
 
 //routing 
+if (isset($_GET['admin']) && isset($_SESSION['user'])) {
+    require './admin.php';
+    require './templates/admin.php';
+}
+
+if (isset($_GET['sendOrder'])) {
+    require './saveOrder.php';
+}
 if (isset($_GET['page']) && $_GET['page'] == 'login') {
     require './templates/login.php';
 } else {

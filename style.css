@@ -134,3 +134,43 @@ input[type='submit'] {
 #login input[type='submit'] {
   padding: 1rem 2rem;
 }
+
+#cart {
+  background-color: var(--ultrered);
+  position: absolute;
+  top: 4.5rem;
+  right: 0;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.3rem 0.3rem 0.3rem var(--violet);
+}
+#cart ul {
+  list-style: none;
+}
+#cart p {
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+}
+.dropin {
+  animation: drop 350ms ease-in-out;
+}
+@keyframes drop {
+  75% {
+    transform: scale(2) rotate(45deg);
+  }
+}
+
+#cartForm {
+  display: none;
+}
+#cart input[type='submit'] {
+  display: block;
+  margin: 1rem auto;
+}
+
+#admin li {
+  list-style: none;
+  padding: 0.5rem;
+}

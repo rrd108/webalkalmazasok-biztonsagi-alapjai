@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2021. Nov 28. 14:46
+-- Létrehozás ideje: 2021. Nov 30. 18:04
 -- Kiszolgáló verziója: 10.6.5-MariaDB
 -- PHP verzió: 8.0.12
 
@@ -39,6 +39,19 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `category`) VALUES
 (1, 'Bogyós'),
 (2, 'Magyaros');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created` datetime NOT NULL DEFAULT current_timestamp(),
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -107,6 +120,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `products`
 --
 ALTER TABLE `products`
@@ -128,6 +147,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `categories`
   MODIFY `id` smallint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT a táblához `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT a táblához `products`
