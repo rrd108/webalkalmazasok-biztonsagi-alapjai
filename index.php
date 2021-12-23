@@ -23,6 +23,9 @@ if (isset($_GET['admin']) && isset($_SESSION['user'])) {
 if (isset($_GET['sendOrder'])) {
     require './saveOrder.php';
 }
+if (isset($_GET['search'])) {
+    require './search.php';
+}
 if (isset($_GET['page']) && $_GET['page'] == 'login') {
     require './templates/login.php';
 } else {

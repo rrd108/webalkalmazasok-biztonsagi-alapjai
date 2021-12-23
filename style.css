@@ -45,7 +45,8 @@ header h1 {
   margin-right: 0.5rem;
 }
 
-main {
+main,
+#search {
   max-width: 70rem;
   margin: 0 auto;
   gap: 1rem;
@@ -172,5 +173,15 @@ input[type='submit'] {
 
 #admin li {
   list-style: none;
+  padding: 0.5rem;
+}
+
+#search input {
+  width: 75%;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 1rem;
   padding: 0.5rem;
 }

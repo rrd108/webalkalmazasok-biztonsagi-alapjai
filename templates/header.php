@@ -24,3 +24,10 @@
         </form>
     </div>
 </header>
+
+<form id="search" method="GET" action="index.php">
+    Keresés <input type="text" name="search" id="searchInput">
+    <?php if ($_GET['search']) : ?>
+        <p>Találatok a <?= $_GET['search'] ?> keresési kifejezésre</p>
+    <?php endif; ?>
+</form>
