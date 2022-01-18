@@ -29,7 +29,7 @@
     Keresés <input type="text" name="search" id="searchInput">
     <?php if (isset($_GET['search'])) : ?>
         <p>Találatok a <?= $_GET['search'] ?> keresési kifejezésre</p>
-        <!-- egy lehetséges javítási mód
+        <!-- XSS szűrés
         <p>Találatok a <?= htmlspecialchars($_GET['search']) ?> keresési kifejezésre</p>
         -->
     <?php endif; ?>
